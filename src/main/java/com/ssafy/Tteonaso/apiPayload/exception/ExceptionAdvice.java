@@ -49,7 +49,7 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
     }
 
     private ResponseEntity<Object> handleExceptionInternal(Exception e, ErrorReasonDTO reason,
-                                                           Headers headers, HttpServletRequest request) {
+                                                           HttpHeaders headers, HttpServletRequest request) {
         ApiResponse<Object> body = ApiResponse.onFailure(reason.getCode(), reason.getMessage(), null);
         WebRequest webRequest = new ServletWebRequest(request);
         return super.handleExceptionInternal(
