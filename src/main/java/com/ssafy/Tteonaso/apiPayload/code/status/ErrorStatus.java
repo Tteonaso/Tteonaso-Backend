@@ -11,7 +11,9 @@ import org.springframework.http.HttpStatus;
 public enum ErrorStatus implements BaseErrorCode {
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "COMMON5001", "서버 에러, 관리자에게 문의 바랍니다."),
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "COMMON5002", "잘못된 접근입니다."),
-    ATHENTICATION_NOT_FOUND(HttpStatus.FORBIDDEN, "JWT4001", "인증 정보를 찾을 수 없습니다.");
+    ATHENTICATION_NOT_FOUND(HttpStatus.FORBIDDEN, "JWT4001", "인증 정보를 찾을 수 없습니다."),
+    ACCESSTOKEN_INVALID(HttpStatus.FORBIDDEN, "JWT4002", "유효한 토큰이 아닙니다"),
+    ;
 
     private final HttpStatus httpStatus;
     private final String code;
