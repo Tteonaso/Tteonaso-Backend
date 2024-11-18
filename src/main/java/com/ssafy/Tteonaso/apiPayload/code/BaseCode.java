@@ -1,4 +1,7 @@
 package com.ssafy.Tteonaso.apiPayload.code;
 
-public class BaseCode {
+public interface BaseCode {
+
+    public ReasonDTO getReason();
+    public ReasonDTO getReasonHttpStatus();
 }
