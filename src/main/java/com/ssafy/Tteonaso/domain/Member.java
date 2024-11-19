@@ -46,9 +46,9 @@ public class Member extends BaseEntity {
     Role role;
 
     @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
-    List<Member> followerList;
+    List<Follow> followerList;
 
     @OneToMany(mappedBy = "following", cascade = CascadeType.ALL)
-    List<Member> followingList;
+    List<Follow> followingList;
 
 }
