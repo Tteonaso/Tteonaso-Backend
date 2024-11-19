@@ -24,6 +24,6 @@ public class MemberRestController {
     @PostMapping("/signup")
     public ApiResponse<MemberResponseDTO.SignUpResponseDTO> signUp(@ModelAttribute @Valid MemberRequestDTO.SignUpDTO signUpDTO) {
         Member newMember = memberService.signUp(signUpDTO);
-        return ApiResponse.onSuccess(null);
+        return ApiResponse.onSuccess(MemberConverter.toSignUpResultDTO(newMember));
     }
 }

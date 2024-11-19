@@ -24,9 +24,6 @@ public class Member extends BaseEntity {
 
     String password;
 
-    @OneToOne
-    @JoinColumn(name = "address_id")
-    Address address;
 
     @Enumerated(EnumType.STRING)
     Gender gender;
