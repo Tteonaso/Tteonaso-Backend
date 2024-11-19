@@ -30,7 +30,7 @@ public class SecurityConfig {
                                 .requestMatchers("/test")
                                 .permitAll()
                                 .anyRequest()
-                                .authenticated()
+                                .permitAll()
                 )
                 .sessionManagement(
                         sessionManagement -> sessionManagement

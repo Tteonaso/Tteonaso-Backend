@@ -35,5 +35,12 @@ public class MemberConverter {
                 .followerList(new ArrayList<>())
                 .build();
     }
+
+    public static MemberResponseDTO.SignUpResponseDTO toSignUpResultDTO(Member member) {
+        return MemberResponseDTO.SignUpResponseDTO.builder()
+                .memberId(member.getMemberId())
+                .name(member.getName())
+                .build();
+    }
 }
 
