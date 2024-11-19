@@ -5,6 +5,7 @@ import com.ssafy.Tteonaso.apiPayload.exception.handler.JwtHandler;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+
 public class JwtSecurityUtil {
     public static String getCurrentMemberId() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
