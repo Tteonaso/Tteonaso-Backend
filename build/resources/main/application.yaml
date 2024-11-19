@@ -1,4 +1,10 @@
 jwt:
   header: Authorization
-  secret: 4ad7f1b7fbd714134996900eede8034712e8109ed68498bcdba44639d3d5cfe16878bfbe9ff2b6fcf68184c3184cb1fdbb998be28d1d394b89a446f3b89ea41e
+  secret: ${JWT_SECRET}
   token-validity-in-seconds: 8640000
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
