@@ -16,4 +16,6 @@ public class MemberRequestDTO {
         String phone;
         //MultipartFile profile_image;
     }
+
+
 }
