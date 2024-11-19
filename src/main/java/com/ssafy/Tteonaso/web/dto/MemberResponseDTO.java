@@ -22,4 +22,7 @@ public class MemberResponseDTO {
         Long memberId;
         String name;
     }
+
+    public class SignInResponseDTO {
+    }
 }

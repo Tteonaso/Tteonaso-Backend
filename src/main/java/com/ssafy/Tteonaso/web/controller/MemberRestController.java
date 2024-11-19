@@ -26,4 +26,10 @@ public class MemberRestController {
         Member newMember = memberService.signUp(signUpDTO);
         return ApiResponse.onSuccess(MemberConverter.toSignUpResultDTO(newMember));
     }
+
+    @PostMapping("/signin")
+    public ApiResponse<MemberResponseDTO.SignInResponseDTO> signIp(@RequestBody MemberRequestDTO.SignInDTO signInDTO) {
+        Member newMember = memberService.signIn(signInDTO);
+        return ApiResponse.onSuccess(null);
+    }
 }

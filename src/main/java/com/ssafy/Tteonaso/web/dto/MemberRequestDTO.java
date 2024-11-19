@@ -18,4 +18,6 @@ public class MemberRequestDTO {
     }
 
 
+    public class SignInDTO {
+    }
 }
