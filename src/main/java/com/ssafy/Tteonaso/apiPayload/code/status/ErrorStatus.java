@@ -13,7 +13,7 @@ public enum ErrorStatus implements BaseErrorCode {
     BAD_REQUEST(HttpStatus.BAD_REQUEST, "COMMON5002", "잘못된 접근입니다."),
     ATHENTICATION_NOT_FOUND(HttpStatus.FORBIDDEN, "JWT4001", "인증 정보를 찾을 수 없습니다."),
     ACCESSTOKEN_INVALID(HttpStatus.FORBIDDEN, "JWT4002", "유효한 토큰이 아닙니다"),
-    ;
+    ALREADY_EXIST_MEMBER(HttpStatus.BAD_REQUEST, "MEMBER4001", "이미 존재하는 멤버입니다.");
 
     private final HttpStatus httpStatus;
     private final String code;
