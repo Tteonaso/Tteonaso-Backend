@@ -2,10 +2,12 @@ package com.ssafy.Tteonaso.converter;
 
 import com.ssafy.Tteonaso.domain.Member;
 import com.ssafy.Tteonaso.domain.enums.Gender;
+import com.ssafy.Tteonaso.jwt.JwtToken;
 import com.ssafy.Tteonaso.web.dto.MemberRequestDTO;
 import com.ssafy.Tteonaso.web.dto.MemberResponseDTO;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MemberConverter {
     public static MemberResponseDTO.TempTestDTO toTempTestDTO() {
@@ -33,6 +35,7 @@ public class MemberConverter {
                 .gender(gender)
                 .followingList(new ArrayList<>())
                 .followerList(new ArrayList<>())
+                .roles(new ArrayList<>(List.of("MEMBER")))
                 .build();
     }
 
@@ -40,6 +43,12 @@ public class MemberConverter {
         return MemberResponseDTO.SignUpResponseDTO.builder()
                 .memberId(member.getMemberId())
                 .name(member.getName())
+                .build();
+    }
+
+    public static MemberResponseDTO.SignInResponseDTO toSignInResultDTO(JwtToken jwtToken) {
+        return MemberResponseDTO.SignInResponseDTO.builder()
+                .accessToken(jwtToken.getAccessToken())
                 .build();
     }
 }

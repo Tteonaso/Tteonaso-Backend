@@ -3,6 +3,7 @@ package com.ssafy.Tteonaso.web.controller;
 import com.ssafy.Tteonaso.apiPayload.ApiResponse;
 import com.ssafy.Tteonaso.converter.MemberConverter;
 import com.ssafy.Tteonaso.domain.Member;
+import com.ssafy.Tteonaso.jwt.JwtToken;
 import com.ssafy.Tteonaso.service.MemberService;
 import com.ssafy.Tteonaso.web.dto.MemberRequestDTO;
 import com.ssafy.Tteonaso.web.dto.MemberResponseDTO;
@@ -25,5 +26,11 @@ public class MemberRestController {
     public ApiResponse<MemberResponseDTO.SignUpResponseDTO> signUp(@ModelAttribute @Valid MemberRequestDTO.SignUpDTO signUpDTO) {
         Member newMember = memberService.signUp(signUpDTO);
         return ApiResponse.onSuccess(MemberConverter.toSignUpResultDTO(newMember));
+    }
+
+    @PostMapping("/signin")
+    public ApiResponse<MemberResponseDTO.SignInResponseDTO> signIp(@RequestBody @Valid MemberRequestDTO.SignInDTO signInDTO) {
+        JwtToken jwtToken = memberService.signIn(signInDTO);
+        return ApiResponse.onSuccess(MemberConverter.toSignInResultDTO(jwtToken));
     }
 }

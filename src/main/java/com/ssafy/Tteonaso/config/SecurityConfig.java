@@ -29,6 +29,8 @@ public class SecurityConfig {
                                 .permitAll()
                                 .requestMatchers("/test")
                                 .permitAll()
+                                .requestMatchers("/member/signup")
+                                .permitAll()
                                 .anyRequest()
                                 .permitAll()
                 )

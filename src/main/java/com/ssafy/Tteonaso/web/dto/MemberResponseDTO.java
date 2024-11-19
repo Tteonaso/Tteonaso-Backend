@@ -22,4 +22,12 @@ public class MemberResponseDTO {
         Long memberId;
         String name;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class SignInResponseDTO {
+        String accessToken;
+    }
 }
