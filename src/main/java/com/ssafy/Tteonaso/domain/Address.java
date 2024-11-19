@@ -11,21 +11,12 @@ import lombok.*;
 @AllArgsConstructor
 public class Address extends BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long addressId;
+    Long dongCode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sido_id")
-    Sido sido;
+    String sidoName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "gugun_id")
-    Gugun gugun;
+    String gugunName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dong_id")
-    Dong dong;
-
-    String fullAddress;
+    String dongName;
 
 }
