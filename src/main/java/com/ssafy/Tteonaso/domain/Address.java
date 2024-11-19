@@ -1,10 +1,7 @@
 package com.ssafy.Tteonaso.domain;
 
 import com.ssafy.Tteonaso.domain.common.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,11 +14,17 @@ public class Address extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long addressId;
 
-    //Sido sido;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sido_id")
+    Sido sido;
 
-    //Gugun gugun;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "gugun_id")
+    Gugun gugun;
 
-    //Dong dong;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dong_id")
+    Dong dong;
 
     String fullAddress;
 

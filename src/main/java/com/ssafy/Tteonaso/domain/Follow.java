@@ -1,10 +1,7 @@
 package com.ssafy.Tteonaso.domain;
 
 import com.ssafy.Tteonaso.domain.common.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -17,8 +14,12 @@ public class Follow extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long followId;
 
-    //Member follower;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "follower_id")
+    Member follower;
 
-    //Member following
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "following_id")
+    Member following;
 
 }
