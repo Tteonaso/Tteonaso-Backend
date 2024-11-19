@@ -29,4 +29,9 @@ public class MemberServiceImpl implements MemberService{
         Member newMember = MemberConverter.toMember(signUpDTO, profileImage, passwordEncoder.encode(signUpDTO.getPassword()));
         return memberRepository.save(newMember);
     }
+
+    @Override
+    public Member signIn(MemberRequestDTO.SignInDTO signInDTO) {
+        return null;
+    }
 }
