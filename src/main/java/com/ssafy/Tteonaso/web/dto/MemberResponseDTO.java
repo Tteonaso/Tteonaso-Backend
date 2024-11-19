@@ -23,6 +23,11 @@ public class MemberResponseDTO {
         String name;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
     public class SignInResponseDTO {
+        String accessToken;
     }
 }

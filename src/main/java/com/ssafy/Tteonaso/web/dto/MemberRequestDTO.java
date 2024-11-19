@@ -18,6 +18,10 @@ public class MemberRequestDTO {
     }
 
 
+    @Getter
+    @Setter
     public class SignInDTO {
+        String email;
+        String password;
     }
 }
