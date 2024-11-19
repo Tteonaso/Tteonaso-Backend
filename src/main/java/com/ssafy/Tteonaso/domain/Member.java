@@ -2,11 +2,13 @@ package com.ssafy.Tteonaso.domain;
 
 import com.ssafy.Tteonaso.domain.common.BaseEntity;
 import com.ssafy.Tteonaso.domain.enums.Gender;
+import com.ssafy.Tteonaso.domain.enums.Role;
 import com.ssafy.Tteonaso.domain.enums.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
@@ -22,7 +24,9 @@ public class Member extends BaseEntity {
 
     String password;
 
-    //Address address;
+    @OneToOne
+    @JoinColumn(name = "address_id")
+    Address address;
 
     @Enumerated(EnumType.STRING)
     Gender gender;
@@ -34,5 +38,17 @@ public class Member extends BaseEntity {
     String profileImage;
 
     @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     Status status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'MEMBER'")
+    Role role;
+
+    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
+    List<Member> followerList;
+
+    @OneToMany(mappedBy = "following", cascade = CascadeType.ALL)
+    List<Member> followingList;
+
 }

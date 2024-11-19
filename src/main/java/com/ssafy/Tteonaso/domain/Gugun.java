@@ -1,11 +1,10 @@
 package com.ssafy.Tteonaso.domain;
 
 import com.ssafy.Tteonaso.domain.common.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -18,5 +17,8 @@ public class Gugun {
     Long gugunId;
 
     String gugunName;
+
+    @OneToMany(mappedBy = "gugun", cascade = CascadeType.ALL)
+    List<Address> addressList;
 
 }
