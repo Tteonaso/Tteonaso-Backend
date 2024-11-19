@@ -1,7 +1,9 @@
 package com.ssafy.Tteonaso.repository;
 
 
-public interface MemberRepository {
+import com.ssafy.Tteonaso.domain.Member;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-    int selectByEmail(String email);
+public interface MemberRepository extends JpaRepository<Member, Long> {
+    boolean existsByEmail(String email);
 }

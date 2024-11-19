@@ -6,17 +6,19 @@ import com.ssafy.Tteonaso.domain.Member;
 import com.ssafy.Tteonaso.repository.MemberRepository;
 import com.ssafy.Tteonaso.web.dto.MemberRequestDTO;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
+@Slf4j
 public class MemberServiceImpl implements MemberService{
     private final MemberRepository memberRepository;
     @Override
     public Member signUp(MemberRequestDTO.SignUpDTO signUpDTO) {
-        if (memberRepository.selectByEmail(signUpDTO.getEmail()) != 0) {
-            throw new MemberHandler(ErrorStatus.ALREADY_EXIST_MEMBER);
-        }
+
         return null;
     }
 }
