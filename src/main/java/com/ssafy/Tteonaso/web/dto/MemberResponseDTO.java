@@ -27,7 +27,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public class SignInResponseDTO {
+    public static class SignInResponseDTO {
         String accessToken;
     }
 }

@@ -20,7 +20,7 @@ public class MemberRequestDTO {
 
     @Getter
     @Setter
-    public class SignInDTO {
+    public static class SignInDTO {
         String email;
         String password;
     }

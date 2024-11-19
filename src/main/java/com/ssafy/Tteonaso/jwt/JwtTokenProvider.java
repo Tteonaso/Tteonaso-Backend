@@ -50,7 +50,7 @@ public class JwtTokenProvider {
                 .compact();
 
         return JwtToken.builder()
-                .grantType("Bearer ")
+                .grantType("Bearer")
                 .accessToken(accessToken)
                 .build();
     }
