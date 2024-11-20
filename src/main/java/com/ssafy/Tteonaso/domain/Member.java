@@ -3,6 +3,7 @@ package com.ssafy.Tteonaso.domain;
 import com.ssafy.Tteonaso.domain.common.BaseEntity;
 import com.ssafy.Tteonaso.domain.enums.Gender;
 import com.ssafy.Tteonaso.domain.enums.Status;
+import com.ssafy.Tteonaso.domain.mapping.ChatRoomMember;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -42,15 +43,12 @@ public class Member extends BaseEntity implements UserDetails {
     @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private Status status;
 
-    @OneToMany(mappedBy = "follower", cascade = CascadeType.ALL)
-    private List<Follow> followerList;
-
-    @OneToMany(mappedBy = "following", cascade = CascadeType.ALL)
-    private List<Follow> followingList;
-
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<ChatRoomMember> chatRoomMemberList;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
