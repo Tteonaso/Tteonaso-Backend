@@ -33,8 +33,6 @@ public class MemberConverter {
                 .password(password)
                 .phone(signUpDTO.getPhone())
                 .gender(gender)
-                .followingList(new ArrayList<>())
-                .followerList(new ArrayList<>())
                 .roles(new ArrayList<>(List.of("MEMBER")))
                 .build();
     }

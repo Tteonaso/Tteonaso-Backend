@@ -1,6 +1,5 @@
 package com.ssafy.Tteonaso.domain;
 
-import com.ssafy.Tteonaso.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,17 +8,22 @@ import lombok.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Follow extends BaseEntity {
+public class Message {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long followId;
+    private Long messageId;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "follower_id")
-    Member follower;
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "following_id")
-    Member following;
+    @JoinColumn(name = "chat_room_id")
+    private ChatRoom chatRoom;
 
+    private String content;
+
+    private Long messageSequence;
 }
