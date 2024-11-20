@@ -178,13 +178,14 @@ $RECYCLE.BIN/
 *.iml
 
 # Gradle 관련 파일
+/build/
 .gradle/
 *.bin
 *.lock
 
 # 기타 IDE와 컴파일 관련 파일
-/build/**/*.class
 *.uniqueId*
+*.class
 
 # 로그 파일
 *.log
