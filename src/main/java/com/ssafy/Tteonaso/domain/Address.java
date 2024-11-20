@@ -1,6 +1,5 @@
 package com.ssafy.Tteonaso.domain;
 
-import com.ssafy.Tteonaso.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,9 +8,16 @@ import lombok.*;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class Address extends BaseEntity {
+@Table(
+    name = "address",
+    indexes = {
+        @Index(name = "idx_sido_name", columnList = "sidoName"),
+        @Index(name = "idx_gugun_name", columnList = "gugunName")
+    }
+)
+public class Address {
     @Id
-    Long dongCode;
+    String dongCode;
 
     String sidoName;
 
