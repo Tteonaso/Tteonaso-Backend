@@ -5,15 +5,13 @@ import com.ssafy.Tteonaso.service.MapFilterService;
 import com.ssafy.Tteonaso.web.dto.MapFilterResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/map")
+@CrossOrigin(origins = "http://localhost:5173")
 public class MapFilterRestController {
     private final MapFilterService mapFilterService;
 

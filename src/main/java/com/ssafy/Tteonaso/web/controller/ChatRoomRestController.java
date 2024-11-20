@@ -7,6 +7,7 @@ import com.ssafy.Tteonaso.service.ChatRoomService;
 import com.ssafy.Tteonaso.web.dto.ChatRoomResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Slf4j
 @RequestMapping("/chatroom")
+@CrossOrigin(origins = "http://localhost:5173")
 public class ChatRoomRestController {
 
     private final ChatRoomService chatRoomService;
