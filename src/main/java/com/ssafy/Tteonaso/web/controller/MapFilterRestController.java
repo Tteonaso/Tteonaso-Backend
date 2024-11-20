@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/map/address")
+@RequestMapping("/map")
 public class MapFilterRestController {
     private final MapFilterService mapFilterService;
 
-    @GetMapping("/sido")
+    @GetMapping("/address/sido")
     public ApiResponse<MapFilterResponseDTO.GugunResponseDTO> getGugunBySido(@RequestParam String sidoName) {
         var gugunNames = mapFilterService.getGugunNamesBySido(sidoName);
         return ApiResponse.onSuccess(
@@ -25,7 +25,7 @@ public class MapFilterRestController {
         );
     }
 
-    @GetMapping("/gugun")
+    @GetMapping("/address/gugun")
     public ApiResponse<MapFilterResponseDTO.DongResponseDTO> getDongByGugun(@RequestParam String gugunName) {
         var dongNames = mapFilterService.getDongNamesByGugun(gugunName);
         return ApiResponse.onSuccess(
