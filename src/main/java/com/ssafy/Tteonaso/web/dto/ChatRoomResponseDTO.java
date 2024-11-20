@@ -11,6 +11,10 @@ public class ChatRoomResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class getChatRoomDTO {
-
+        Long chatRoomId;
+        String sido;
+        String gugun;
+        String dong;
+        Long participants;
     }
 }
