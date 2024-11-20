@@ -1,6 +1,5 @@
 package com.ssafy.Tteonaso.domain;
 
-import com.ssafy.Tteonaso.domain.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
