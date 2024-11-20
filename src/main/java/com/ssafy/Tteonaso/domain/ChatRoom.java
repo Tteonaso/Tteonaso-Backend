@@ -14,12 +14,15 @@ import java.util.List;
 public class ChatRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long charRoomId;
+    private Long chatRoomId;
 
     @OneToOne
     @JoinColumn(name = "address_id")
-    Address address;
+    private Address address;
 
     @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL)
     private List<ChatRoomMember> chatRoomMemberList;
+
+    @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL)
+    private List<Message> messageList;
 }

@@ -50,6 +50,9 @@ public class Member extends BaseEntity implements UserDetails {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<ChatRoomMember> chatRoomMemberList;
 
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Message> messageList;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.roles.stream()
