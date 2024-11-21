@@ -47,8 +47,15 @@ public class WebSocketHandler extends TextWebSocketHandler {
             chatRoomSessionMap.get(chatMessageDTO.getChatRoomId()).remove(session);
             chatMessageDTO.setMessage("님이 퇴장하셨습니다.");
         }
-        for(WebSocketSession webSocketSession : chatRoomSessionMap.get(chatMessageDTO.getChatRoomId())) {
-            webSocketSession.sendMessage(new TextMessage(mapper.writeValueAsString(chatMessageDTO)));
+
+        // 메시지를 보낼 때, 세션이 열린 상태인지 확인
+        for (WebSocketSession webSocketSession : chatRoomSessionMap.get(chatMessageDTO.getChatRoomId())) {
+            if (webSocketSession.isOpen()) {  // 세션이 열려 있는지 확인
+                webSocketSession.sendMessage(new TextMessage(mapper.writeValueAsString(chatMessageDTO)));
+            } else {
+                // 세션이 닫혔다면 맵에서 제거
+                chatRoomSessionMap.get(chatMessageDTO.getChatRoomId()).remove(webSocketSession);
+            }
         }
     }
 
@@ -57,5 +64,10 @@ public class WebSocketHandler extends TextWebSocketHandler {
         log.info("{} 연결 끊김", session.getId());
         session.sendMessage(new TextMessage("WebSocket 연결 종료"));
         sessions.remove(session);
+
+        // 연결이 끊어진 세션을 채팅방 세션 맵에서 제거
+        for (Set<WebSocketSession> roomSessions : chatRoomSessionMap.values()) {
+            roomSessions.remove(session);
+        }
     }
 }
