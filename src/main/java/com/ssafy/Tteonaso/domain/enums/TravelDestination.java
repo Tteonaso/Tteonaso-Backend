@@ -6,10 +6,12 @@ import lombok.Getter;
 public enum TravelDestination {
     SEOUL("서울"),
     GAPYEONG("가평"),
-    GANGNEUNG_SOKCHO("강릉/속초"),
+    GANGNEUNG("강릉"),
+    SOKCHO("속초"),
     GYEONGJU("경주"),
     BUSAN("부산"),
     YEOSU("여수"),
+    DEAJEON("대전"),
     INCHEON("인천"),
     JEONJU("전주"),
     JEJU("제주"),
