@@ -1,15 +1,14 @@
 package com.ssafy.Tteonaso.web.controller;
 
 import com.ssafy.Tteonaso.apiPayload.ApiResponse;
+import com.ssafy.Tteonaso.converter.GptEnumConverter;
 import com.ssafy.Tteonaso.domain.enums.*;
 import com.ssafy.Tteonaso.service.GptService;
 import com.ssafy.Tteonaso.web.dto.GptTravelRequestDTO;
+import com.ssafy.Tteonaso.web.dto.GptTravelResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Arrays;
-import java.util.Map;
-import java.util.stream.Collectors;
+import reactor.core.publisher.Mono;
 
 @RestController
 @RequestMapping("/api")
@@ -21,10 +20,12 @@ public class GptTravelRestController {
      * 여행 추천 요청 처리 메서드
      */
     @PostMapping("/recommend")
-    public ApiResponse<?> getRecommendations(@RequestBody GptTravelRequestDTO requestDTO) {
-        var recommendations = gptService.getTravelRecommendations(requestDTO);
-
-        return ApiResponse.onSuccess(recommendations);
+    public Mono<ApiResponse<GptTravelResponseDTO>> getRecommendations(@RequestBody GptTravelRequestDTO requestDTO) {
+        return gptService.getTravelRecommendations(requestDTO)
+                .map(ApiResponse::onSuccess)
+                .onErrorResume(error -> {
+                    return Mono.just(ApiResponse.onFailure("GPT_ERROR", "여행 추천 생성 실패", null));
+                });
     }
 
     /**
@@ -32,12 +33,7 @@ public class GptTravelRestController {
      */
     @GetMapping("/travel-styles")
     public ApiResponse<?> getTravelStyles() {
-        var travelStyles = Arrays.stream(TravelStyle.values())
-                .map(style -> Map.of(
-                        "name", style.name(),
-                        "description", style.getDescription()
-                ))
-                .collect(Collectors.toList());
+        var travelStyles = GptEnumConverter.convert(TravelStyle.class);
 
         return ApiResponse.onSuccess(travelStyles);
     }
@@ -47,12 +43,7 @@ public class GptTravelRestController {
      */
     @GetMapping("/schedule-preferences")
     public ApiResponse<?> getSchedulePreferences() {
-        var schedulePreferences =  Arrays.stream(SchedulePreference.values())
-                .map(pref -> Map.of(
-                        "name", pref.name(),
-                        "description", pref.getDescription()
-                ))
-                .collect(Collectors.toList());
+        var schedulePreferences =  GptEnumConverter.convert(SchedulePreference.class);
 
         return ApiResponse.onSuccess(schedulePreferences);
     }
@@ -62,12 +53,7 @@ public class GptTravelRestController {
      */
     @GetMapping("/companions")
     public ApiResponse<?> getCompanions() {
-        var companions =  Arrays.stream(CompanionType.values())
-                .map(companion -> Map.of(
-                        "name", companion.name(),
-                        "description", companion.getDescription()
-                ))
-                .collect(Collectors.toList());
+        var companions =  GptEnumConverter.convert(CompanionType.class);
 
         return ApiResponse.onSuccess(companions);
     }
@@ -77,12 +63,7 @@ public class GptTravelRestController {
      */
     @GetMapping("/travel-durations")
     public ApiResponse<?> getTravelDurations() {
-        var travelDurations = Arrays.stream(TravelDuration.values())
-                .map(duration -> Map.of(
-                        "name", duration.name(),
-                        "description", duration.getDescription()
-                ))
-                .collect(Collectors.toList());
+        var travelDurations = GptEnumConverter.convert(TravelDuration.class);
 
         return ApiResponse.onSuccess(travelDurations);
     }
@@ -92,12 +73,7 @@ public class GptTravelRestController {
      */
     @GetMapping("/destinations")
     public ApiResponse<?> getDestinations() {
-        var destinations = Arrays.stream(TravelDestination.values())
-                .map(destination -> Map.of(
-                        "name", destination.name(),
-                        "description", destination.getDescription()
-                ))
-                .collect(Collectors.toList());
+        var destinations = GptEnumConverter.convert(TravelDestination.class);
 
         return ApiResponse.onSuccess(destinations);
     }

@@ -4,6 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum TravelDestination {
+    SEOUL("서울"),
     GAPYEONG("가평"),
     GANGNEUNG_SOKCHO("강릉/속초"),
     GYEONGJU("경주"),
