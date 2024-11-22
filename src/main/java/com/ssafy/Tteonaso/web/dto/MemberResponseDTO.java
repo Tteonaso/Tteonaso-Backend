@@ -36,6 +36,12 @@ public class MemberResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class MemberDetailDTO {
-        String accessToken;
+        Long memberId;
+        String name;
+        String gender;
+        String email;
+        String phone;
+        String profileImage;
+        String role;
     }
 }
