@@ -30,4 +30,12 @@ public class MemberResponseDTO {
     public static class SignInResponseDTO {
         String accessToken;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class MemberDetailDTO {
+        String accessToken;
+    }
 }

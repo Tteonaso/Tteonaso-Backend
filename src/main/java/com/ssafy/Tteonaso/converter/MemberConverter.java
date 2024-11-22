@@ -49,5 +49,9 @@ public class MemberConverter {
                 .accessToken(jwtToken.getAccessToken())
                 .build();
     }
+
+    public static MemberResponseDTO.MemberDetailDTO toMemberDetailDTO(Member member) {
+        return null;
+    }
 }
 

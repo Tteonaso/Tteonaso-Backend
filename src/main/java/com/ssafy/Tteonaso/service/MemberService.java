@@ -8,4 +8,6 @@ public interface MemberService {
     Member signUp(MemberRequestDTO.SignUpDTO signUpDTO);
 
     JwtToken signIn(MemberRequestDTO.SignInDTO signInDTO);
+
+    Member getMemberDetail(String email);
 }
