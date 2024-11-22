@@ -49,5 +49,17 @@ public class MemberConverter {
                 .accessToken(jwtToken.getAccessToken())
                 .build();
     }
+
+    public static MemberResponseDTO.MemberDetailDTO toMemberDetailDTO(Member member) {
+        return MemberResponseDTO.MemberDetailDTO.builder()
+                .memberId(member.getMemberId())
+                .name(member.getName())
+                .email(member.getEmail())
+                .gender(member.getGender().toString())
+                .phone(member.getPhone())
+                .profileImage(member.getProfileImage())
+                .role(member.getRoles().get(0).toString())
+                .build();
+    }
 }
 

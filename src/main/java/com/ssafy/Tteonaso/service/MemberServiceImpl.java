@@ -54,4 +54,12 @@ public class MemberServiceImpl implements MemberService{
             throw new JwtHandler(ErrorStatus.PASSWORD_NOT_MATCH);
         }
     }
+
+    @Override
+    public Member getMemberDetail(String email) {
+        if (!memberRepository.existsByEmail(email)) {
+            throw new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND);
+        }
+        return memberRepository.findByEmail(email).get();
+    }
 }
