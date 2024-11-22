@@ -20,6 +20,8 @@ public class ChatRoom {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    private String addressName;
+
     @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL)
     private List<ChatRoomMember> chatRoomMemberList;
 
