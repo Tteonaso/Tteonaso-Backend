@@ -10,10 +10,11 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import java.util.HashMap;
+import java.util.*;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Slf4j
 @Component
@@ -21,7 +22,7 @@ import java.util.Set;
 public class WebSocketHandler extends TextWebSocketHandler {
     private final ObjectMapper mapper;
     private final Set<WebSocketSession> sessions = new HashSet<>();
-    private final Map<Long, Set<WebSocketSession>> chatRoomSessionMap = new HashMap<>();
+    private final Map<Long, Set<WebSocketSession>> chatRoomSessionMap = new ConcurrentHashMap<>();
 
     // 소켓 연결 확인
     @Override
@@ -40,24 +41,22 @@ public class WebSocketHandler extends TextWebSocketHandler {
         ChatMessageDTO chatMessageDTO = mapper.readValue(payload, ChatMessageDTO.class);
         log.info("session {}", chatMessageDTO.toString());
 
-        if (chatMessageDTO.getMessageType().equals(ChatMessageDTO.MessageType.JOIN)) {
-            chatRoomSessionMap.computeIfAbsent(chatMessageDTO.getChatRoomId(), s -> new HashSet<>()).add(session);
-            chatMessageDTO.setMessage("님이 입장하셨습니다.");
-        } else if (chatMessageDTO.getMessageType().equals(ChatMessageDTO.MessageType.LEAVE)) {
-            chatRoomSessionMap.get(chatMessageDTO.getChatRoomId()).remove(session);
-            chatMessageDTO.setMessage("님이 퇴장하셨습니다.");
-        }
+        chatRoomSessionMap.computeIfAbsent(chatMessageDTO.getChatRoomId(), s -> ConcurrentHashMap.newKeySet()).add(session);
 
-        // 메시지를 보낼 때, 세션이 열린 상태인지 확인
-        for (WebSocketSession webSocketSession : chatRoomSessionMap.get(chatMessageDTO.getChatRoomId())) {
-            if (webSocketSession.isOpen()) {  // 세션이 열려 있는지 확인
-                webSocketSession.sendMessage(new TextMessage(mapper.writeValueAsString(chatMessageDTO)));
-            } else {
-                // 세션이 닫혔다면 맵에서 제거
-                chatRoomSessionMap.get(chatMessageDTO.getChatRoomId()).remove(webSocketSession);
+        Set<WebSocketSession> sessions = chatRoomSessionMap.get(chatMessageDTO.getChatRoomId());
+        if (sessions != null) {
+            Iterator<WebSocketSession> iterator = sessions.iterator();
+            while (iterator.hasNext()) {
+                WebSocketSession webSocketSession = iterator.next();
+                if (webSocketSession.isOpen()) {
+                    webSocketSession.sendMessage(new TextMessage(mapper.writeValueAsString(chatMessageDTO)));
+                } else {
+                    iterator.remove(); // 안전하게 제거
+                }
             }
         }
     }
+
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
