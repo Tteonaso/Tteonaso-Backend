@@ -13,11 +13,11 @@ WHERE dong_name IS NULL OR dong_name = '';
 
 COMMIT;
 
-INSERT INTO tteonaso.chat_room (address_id, address_name)
-SELECT
-    dong_code AS address_id,
-    CONCAT(sido_name, ' ', gugun_name, ' ', dong_name) AS address_name
-FROM tteonaso.address;
+-- INSERT INTO tteonaso.chat_room (address_id, address_name)
+-- SELECT
+--     dong_code AS address_id,
+--     CONCAT(sido_name, ' ', gugun_name, ' ', dong_name) AS address_name
+-- FROM tteonaso.address;
 
 DELETE FROM place_category;
 
