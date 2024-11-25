@@ -2,11 +2,9 @@ package com.ssafy.Tteonaso.service;
 
 import com.ssafy.Tteonaso.domain.ChatRoom;
 import com.ssafy.Tteonaso.repository.ChatRoomRepository;
-import com.ssafy.Tteonaso.web.dto.ChatRoomRequestDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
