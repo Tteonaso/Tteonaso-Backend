@@ -64,7 +64,13 @@ public class MemberServiceImpl implements MemberService{
     }
 
     @Override
-    public Member updateMemberProfile(String email, MemberRequestDTO.UpdateDTO updateDTO) {
-        return null;
+    @Transactional
+    public void updateMemberProfile(String email, MemberRequestDTO.UpdateDTO updateDTO) {
+        if (!memberRepository.existsByEmail(email)) {
+            throw new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND);
+        }
+
+        Member member = memberRepository.findByEmail(email).get();
+        member.setInfo(updateDTO);
     }
 }

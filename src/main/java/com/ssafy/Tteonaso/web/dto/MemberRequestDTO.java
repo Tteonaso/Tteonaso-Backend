@@ -20,7 +20,6 @@ public class MemberRequestDTO {
     @Setter
     public static class UpdateDTO {
         String name;
-        String email;
         String password;
         String gender;
         String phone;

@@ -44,4 +44,13 @@ public class MemberResponseDTO {
         String profileImage;
         String role;
     }
+
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public class MemberStateDTO {
+        String email;
+        String status;
+    }
 }

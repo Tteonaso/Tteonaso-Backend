@@ -4,6 +4,7 @@ import com.ssafy.Tteonaso.domain.common.BaseEntity;
 import com.ssafy.Tteonaso.domain.enums.Gender;
 import com.ssafy.Tteonaso.domain.enums.Status;
 import com.ssafy.Tteonaso.domain.mapping.ChatRoomMember;
+import com.ssafy.Tteonaso.web.dto.MemberRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -83,5 +84,19 @@ public class Member extends BaseEntity implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public void setInfo(MemberRequestDTO.UpdateDTO updateDTO) {
+        Gender gender = null;
+        switch (updateDTO.getGender()) {
+            case "FEMALE" :
+                gender = Gender.FEMALE;
+            case "MALE" :
+                gender = Gender.MALE;
+        }
+        this.name = updateDTO.getName();
+        this.password = updateDTO.getPassword();
+        this.gender = gender;
+        this.phone = updateDTO.getPhone();
     }
 }

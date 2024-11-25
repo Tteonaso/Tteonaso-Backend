@@ -11,5 +11,5 @@ public interface MemberService {
 
     Member getMemberDetail(String email);
 
-    Member updateMemberProfile(String email, MemberRequestDTO.UpdateDTO updateDTO);
+    void updateMemberProfile(String email, MemberRequestDTO.UpdateDTO updateDTO);
 }

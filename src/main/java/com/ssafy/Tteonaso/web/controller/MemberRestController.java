@@ -44,9 +44,9 @@ public class MemberRestController {
     }
 
     @PutMapping("/update")
-    public ApiResponseDTO<MemberResponseDTO.MemberDetailDTO> updateMemberInfo(MemberRequestDTO.UpdateDTO updateDTO) {
+    public ApiResponseDTO<MemberResponseDTO.MemberStateDTO> updateMemberInfo(MemberRequestDTO.UpdateDTO updateDTO) {
         String email = JwtSecurityUtil.getCurrentMemberEmail();
-        Member member = memberService.updateMemberProfile(email, updateDTO);
-        return ApiResponseDTO.onSuccess(MemberConverter.toMemberDetailDTO(member));
+        memberService.updateMemberProfile(email, updateDTO);
+        return ApiResponseDTO.onSuccess(MemberConverter.toMemberStateDTO(email, "update Profile"));
     }
 }
