@@ -8,5 +8,5 @@ import java.util.List;
 public interface ChatRoomService {
     List<ChatRoom> readAllChatRoom();
 
-    List<ChatRoom> searchChatRoomByKeyword(ChatRoomRequestDTO.SearchDTO searchDTO);
+    List<ChatRoom> searchChatRoomByKeyword(String keyword);
 }

@@ -22,8 +22,7 @@ public class ChatRoomServiceImpl implements ChatRoomService{
     }
 
     @Override
-    public List<ChatRoom> searchChatRoomByKeyword(ChatRoomRequestDTO.SearchDTO searchDTO) {
-        String keyword = searchDTO.getKeyword().trim();
+    public List<ChatRoom> searchChatRoomByKeyword(String keyword) {
 
         return chatRoomRepository.findAll().stream()
                 .filter(chatRoom -> chatRoom.getAddressName() != null && chatRoom.getAddressName().contains(keyword))
