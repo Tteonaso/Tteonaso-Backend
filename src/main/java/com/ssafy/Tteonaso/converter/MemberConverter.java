@@ -34,6 +34,7 @@ public class MemberConverter {
                 .phone(signUpDTO.getPhone())
                 .gender(gender)
                 .roles(new ArrayList<>(List.of("MEMBER")))
+                .age(signUpDTO.getAge())
                 .build();
     }
 
@@ -59,6 +60,7 @@ public class MemberConverter {
                 .phone(member.getPhone())
                 .profileImage(member.getProfileImage())
                 .role(member.getRoles().get(0).toString())
+                .age(member.getAge())
                 .build();
     }
 

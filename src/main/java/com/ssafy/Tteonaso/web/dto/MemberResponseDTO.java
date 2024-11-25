@@ -42,6 +42,7 @@ public class MemberResponseDTO {
         String email;
         String phone;
         String profileImage;
+        Integer age;
         String role;
     }
 
