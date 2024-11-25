@@ -37,7 +37,7 @@ public class ChatRoomRestController {
 
     @GetMapping()
     public ApiResponse<List<ChatRoomResponseDTO.getChatRoomDTO>> searchChatRoom(ChatRoomRequestDTO.SearchDTO searchDTO) {
-        List<ChatRoom> chatRoomList = chatRoomService.readAllChatRoom();
+        List<ChatRoom> chatRoomList = chatRoomService.searchChatRoomByKeyword(searchDTO);
 
         return ApiResponse.onSuccess(chatRoomList.stream()
                 .map(ChatRoomConverter::toGetChatRoomDTO)
