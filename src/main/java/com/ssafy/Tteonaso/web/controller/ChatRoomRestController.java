@@ -4,6 +4,7 @@ import com.ssafy.Tteonaso.apiPayload.ApiResponse;
 import com.ssafy.Tteonaso.converter.ChatRoomConverter;
 import com.ssafy.Tteonaso.domain.ChatRoom;
 import com.ssafy.Tteonaso.service.ChatRoomService;
+import com.ssafy.Tteonaso.web.dto.ChatRoomRequestDTO;
 import com.ssafy.Tteonaso.web.dto.ChatRoomResponseDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,15 @@ public class ChatRoomRestController {
 
     @GetMapping()
     public ApiResponse<List<ChatRoomResponseDTO.getChatRoomDTO>> readAllChatRoom() {
+        List<ChatRoom> chatRoomList = chatRoomService.readAllChatRoom();
+
+        return ApiResponse.onSuccess(chatRoomList.stream()
+                .map(ChatRoomConverter::toGetChatRoomDTO)
+                .collect(Collectors.toList()));
+    }
+
+    @GetMapping()
+    public ApiResponse<List<ChatRoomResponseDTO.getChatRoomDTO>> searchChatRoom(ChatRoomRequestDTO.SearchDTO searchDTO) {
         List<ChatRoom> chatRoomList = chatRoomService.readAllChatRoom();
 
         return ApiResponse.onSuccess(chatRoomList.stream()
