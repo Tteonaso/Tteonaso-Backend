@@ -1,6 +1,6 @@
 package com.ssafy.Tteonaso.apiPayload.exception;
 
-import com.ssafy.Tteonaso.apiPayload.ApiResponse;
+import com.ssafy.Tteonaso.apiPayload.ApiResponseDTO;
 import com.ssafy.Tteonaso.apiPayload.code.ErrorReasonDTO;
 import com.ssafy.Tteonaso.apiPayload.code.status.ErrorStatus;
 import com.sun.net.httpserver.Headers;
@@ -50,7 +50,7 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> handleExceptionInternal(Exception e, ErrorReasonDTO reason,
                                                            HttpHeaders headers, HttpServletRequest request) {
-        ApiResponse<Object> body = ApiResponse.onFailure(reason.getCode(), reason.getMessage(), null);
+        ApiResponseDTO<Object> body = ApiResponseDTO.onFailure(reason.getCode(), reason.getMessage(), null);
         WebRequest webRequest = new ServletWebRequest(request);
         return super.handleExceptionInternal(
                 e,
@@ -63,7 +63,7 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> handleExceptionInternalFalse(Exception e, ErrorStatus errorCommonStatus,
                                                                 HttpHeaders headers, HttpStatus status, WebRequest request, String errorPoint) {
-        ApiResponse<Object> body = ApiResponse.onFailure(errorCommonStatus.getCode(), errorCommonStatus.getMessage(), errorPoint);
+        ApiResponseDTO<Object> body = ApiResponseDTO.onFailure(errorCommonStatus.getCode(), errorCommonStatus.getMessage(), errorPoint);
         return super.handleExceptionInternal(
                 e,
                 body,
@@ -75,7 +75,7 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> handleExceptionInternalArgs(Exception e, HttpHeaders headers, ErrorStatus errorCommonStatus,
                                                                WebRequest request, Map<String, String> errorArgs) {
-        ApiResponse<Object> bpdy = ApiResponse.onFailure(errorCommonStatus.getCode(),
+        ApiResponseDTO<Object> bpdy = ApiResponseDTO.onFailure(errorCommonStatus.getCode(),
                 errorCommonStatus.getMessage(), errorArgs);
         return super.handleExceptionInternal(
                 e,
@@ -89,7 +89,7 @@ public class ExceptionAdvice extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> handleExceptionInternalConstraint(Exception e, ErrorStatus errorCommonStatus,
                                                                      HttpHeaders headers, WebRequest request) {
-        ApiResponse<Object> body = ApiResponse.onFailure(errorCommonStatus.getCode(), errorCommonStatus.getMessage(), null);
+        ApiResponseDTO<Object> body = ApiResponseDTO.onFailure(errorCommonStatus.getCode(), errorCommonStatus.getMessage(), null);
         return super.handleExceptionInternal(
                 e,
                 body,

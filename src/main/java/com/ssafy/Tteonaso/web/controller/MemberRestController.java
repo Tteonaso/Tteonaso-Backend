@@ -1,6 +1,6 @@
 package com.ssafy.Tteonaso.web.controller;
 
-import com.ssafy.Tteonaso.apiPayload.ApiResponse;
+import com.ssafy.Tteonaso.apiPayload.ApiResponseDTO;
 import com.ssafy.Tteonaso.converter.MemberConverter;
 import com.ssafy.Tteonaso.domain.Member;
 import com.ssafy.Tteonaso.jwt.JwtSecurityUtil;
@@ -20,26 +20,26 @@ public class MemberRestController {
     private final MemberService memberService;
 
     @GetMapping("/test")
-    public ApiResponse<MemberResponseDTO.TempTestDTO> testAPI() {
-        return ApiResponse.onSuccess(MemberConverter.toTempTestDTO());
+    public ApiResponseDTO<MemberResponseDTO.TempTestDTO> testAPI() {
+        return ApiResponseDTO.onSuccess(MemberConverter.toTempTestDTO());
     }
 
     @PostMapping("/signup")
-    public ApiResponse<MemberResponseDTO.SignUpResponseDTO> signUp(@ModelAttribute @Valid MemberRequestDTO.SignUpDTO signUpDTO) {
+    public ApiResponseDTO<MemberResponseDTO.SignUpResponseDTO> signUp(@ModelAttribute @Valid MemberRequestDTO.SignUpDTO signUpDTO) {
         Member newMember = memberService.signUp(signUpDTO);
-        return ApiResponse.onSuccess(MemberConverter.toSignUpResultDTO(newMember));
+        return ApiResponseDTO.onSuccess(MemberConverter.toSignUpResultDTO(newMember));
     }
 
     @PostMapping("/signin")
-    public ApiResponse<MemberResponseDTO.SignInResponseDTO> signIp(@RequestBody @Valid MemberRequestDTO.SignInDTO signInDTO) {
+    public ApiResponseDTO<MemberResponseDTO.SignInResponseDTO> signIp(@RequestBody @Valid MemberRequestDTO.SignInDTO signInDTO) {
         JwtToken jwtToken = memberService.signIn(signInDTO);
-        return ApiResponse.onSuccess(MemberConverter.toSignInResultDTO(jwtToken));
+        return ApiResponseDTO.onSuccess(MemberConverter.toSignInResultDTO(jwtToken));
     }
 
     @GetMapping()
-    public ApiResponse<MemberResponseDTO.MemberDetailDTO> getMemberDetail() {
+    public ApiResponseDTO<MemberResponseDTO.MemberDetailDTO> getMemberDetail() {
         String email = JwtSecurityUtil.getCurrentMemberEmail();
         Member member = memberService.getMemberDetail(email);
-        return ApiResponse.onSuccess(MemberConverter.toMemberDetailDTO(member));
+        return ApiResponseDTO.onSuccess(MemberConverter.toMemberDetailDTO(member));
     }
 }
