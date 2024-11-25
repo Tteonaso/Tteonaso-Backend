@@ -61,5 +61,12 @@ public class MemberConverter {
                 .role(member.getRoles().get(0).toString())
                 .build();
     }
+
+    public static MemberResponseDTO.MemberStateDTO toMemberStateDTO(String email, String updateProfile) {
+        return MemberResponseDTO.MemberStateDTO.builder()
+                .email(email)
+                .status(updateProfile)
+                .build();
+    }
 }
 
