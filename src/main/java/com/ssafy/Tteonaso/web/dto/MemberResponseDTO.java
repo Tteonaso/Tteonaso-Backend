@@ -49,7 +49,7 @@ public class MemberResponseDTO {
     @Getter
     @NoArgsConstructor
     @AllArgsConstructor
-    public class MemberStateDTO {
+    public static class MemberStateDTO {
         String email;
         String status;
     }

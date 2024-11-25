@@ -69,8 +69,8 @@ public class MemberServiceImpl implements MemberService{
         if (!memberRepository.existsByEmail(email)) {
             throw new MemberHandler(ErrorStatus.MEMBER_NOT_FOUND);
         }
-
+        String encodingPassword = passwordEncoder.encode(updateDTO.getPassword());
         Member member = memberRepository.findByEmail(email).get();
-        member.setInfo(updateDTO);
+        member.setInfo(updateDTO, encodingPassword);
     }
 }

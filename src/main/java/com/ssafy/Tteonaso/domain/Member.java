@@ -86,16 +86,15 @@ public class Member extends BaseEntity implements UserDetails {
         return true;
     }
 
-    public void setInfo(MemberRequestDTO.UpdateDTO updateDTO) {
+    public void setInfo(MemberRequestDTO.UpdateDTO updateDTO, String encodingPassword) {
         Gender gender = null;
-        switch (updateDTO.getGender()) {
-            case "FEMALE" :
-                gender = Gender.FEMALE;
-            case "MALE" :
-                gender = Gender.MALE;
+        if (updateDTO.getGender().equals("MALE")) {
+            gender = Gender.MALE;
+        } else {
+            gender = Gender.FEMALE;
         }
         this.name = updateDTO.getName();
-        this.password = updateDTO.getPassword();
+        this.password = encodingPassword;
         this.gender = gender;
         this.phone = updateDTO.getPhone();
     }
