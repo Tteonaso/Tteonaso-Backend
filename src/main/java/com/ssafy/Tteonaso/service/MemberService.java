@@ -10,4 +10,6 @@ public interface MemberService {
     JwtToken signIn(MemberRequestDTO.SignInDTO signInDTO);
 
     Member getMemberDetail(String email);
+
+    Member updateMemberProfile(String email, MemberRequestDTO.UpdateDTO updateDTO);
 }

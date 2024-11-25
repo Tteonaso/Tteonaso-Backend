@@ -14,7 +14,16 @@ public class MemberRequestDTO {
         String password;
         String gender;
         String phone;
-        //MultipartFile profile_image;
+    }
+
+    @Getter
+    @Setter
+    public static class UpdateDTO {
+        String name;
+        String email;
+        String password;
+        String gender;
+        String phone;
     }
 
 

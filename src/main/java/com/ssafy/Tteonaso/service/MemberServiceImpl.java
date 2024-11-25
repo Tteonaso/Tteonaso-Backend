@@ -62,4 +62,9 @@ public class MemberServiceImpl implements MemberService{
         }
         return memberRepository.findByEmail(email).get();
     }
+
+    @Override
+    public Member updateMemberProfile(String email, MemberRequestDTO.UpdateDTO updateDTO) {
+        return null;
+    }
 }
