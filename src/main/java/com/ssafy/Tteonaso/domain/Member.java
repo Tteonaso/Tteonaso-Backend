@@ -36,6 +36,8 @@ public class Member extends BaseEntity implements UserDetails {
 
     private String email;
 
+    private Integer age;
+
     private String phone;
 
     private String profileImage;
@@ -87,15 +89,11 @@ public class Member extends BaseEntity implements UserDetails {
     }
 
     public void setInfo(MemberRequestDTO.UpdateDTO updateDTO, String encodingPassword) {
-        Gender gender = null;
-        if (updateDTO.getGender().equals("MALE")) {
-            gender = Gender.MALE;
-        } else {
-            gender = Gender.FEMALE;
-        }
+
         this.name = updateDTO.getName();
         this.password = encodingPassword;
-        this.gender = gender;
+        this.age = updateDTO.getAge();
         this.phone = updateDTO.getPhone();
+
     }
 }

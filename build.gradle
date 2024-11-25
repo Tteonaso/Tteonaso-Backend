@@ -44,7 +44,6 @@ dependencies {
 
 	// CHAT
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
-	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
 	// Web Flux
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'

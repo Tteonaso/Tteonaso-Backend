@@ -14,6 +14,7 @@ public class MemberRequestDTO {
         String password;
         String gender;
         String phone;
+        Integer age;
     }
 
     @Getter
@@ -21,8 +22,8 @@ public class MemberRequestDTO {
     public static class UpdateDTO {
         String name;
         String password;
-        String gender;
         String phone;
+        Integer age;
     }
 
 
