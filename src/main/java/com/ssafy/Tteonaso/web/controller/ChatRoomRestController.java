@@ -6,12 +6,10 @@ import com.ssafy.Tteonaso.domain.ChatRoom;
 import com.ssafy.Tteonaso.service.ChatRoomService;
 import com.ssafy.Tteonaso.web.dto.ChatRoomRequestDTO;
 import com.ssafy.Tteonaso.web.dto.ChatRoomResponseDTO;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +33,8 @@ public class ChatRoomRestController {
                 .collect(Collectors.toList()));
     }
 
-    @GetMapping()
-    public ApiResponse<List<ChatRoomResponseDTO.getChatRoomDTO>> searchChatRoom(ChatRoomRequestDTO.SearchDTO searchDTO) {
+    @GetMapping("/search")
+    public ApiResponse<List<ChatRoomResponseDTO.getChatRoomDTO>> searchChatRoom(@RequestBody @Valid ChatRoomRequestDTO.SearchDTO searchDTO) {
         List<ChatRoom> chatRoomList = chatRoomService.searchChatRoomByKeyword(searchDTO);
 
         return ApiResponse.onSuccess(chatRoomList.stream()
