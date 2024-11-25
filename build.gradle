@@ -49,6 +49,10 @@ dependencies {
 	// Web Flux
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'io.projectreactor.netty:reactor-netty:1.1.9'
+	implementation 'io.netty:netty-resolver-dns-native-macos:4.1.97.Final:osx-aarch_64'
+
+	// S3 for Logging
+	implementation 'software.amazon.awssdk:s3:2.20.14'
 }
 
 tasks.named('test') {
