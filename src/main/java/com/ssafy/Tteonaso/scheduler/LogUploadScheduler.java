@@ -22,7 +22,6 @@ public class LogUploadScheduler {
      */
     @Scheduled(cron = "0 0 * * * ?")
     public void uploadLogToS3() {
-        // 현재 시간 기준 1시간 전
         LocalDateTime oneHourAgo = LocalDateTime.now(ZoneId.of("Asia/Seoul")).minusHours(1);
         String logDate = oneHourAgo.format(DateTimeFormatter.ofPattern("yyyy-MM-dd")); // 로그 파일의 날짜 추출
         String logFilePath = String.format("logs/application.%s.log", logDate);
