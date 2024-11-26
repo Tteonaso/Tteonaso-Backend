@@ -21,7 +21,8 @@ public class MemberRequestDTO {
     @Setter
     public static class UpdateDTO {
         String name;
-        String password;
+        String originalPassword;
+        String newPassword;
         String phone;
         Integer age;
     }
